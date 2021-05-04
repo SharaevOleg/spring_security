@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>User panel</title>
+        <style>
+            h2,a {
+                padding-left: 25px;
+                color: #53b1af;
+            }
+
+            table {
+                width: 50%; /* Ширина таблицы */
+                background: white; /* Цвет фона таблицы */
+                color: white; /* Цвет текста */
+                padding-left: 20px;
+                border-spacing: 5px; /* Расстояние между ячейками */
+                text-align: center;
+            }
+
+            td, th {
+                background: #53b1af; /* Цвет фона ячеек */
+                padding: 5px; /* Поля вокруг текста */
+            }
+        </style>
+    </head>
+    <body>
+
+        <a th:href="@{/logout}">Logout</a>
+
+    <h2> User</h2>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Age</th>
+                        <th>E-mail</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td th:text="${user.getFirstName()}"></td>
+                        <td th:text="${user.getLastName()}"></td>
+                        <td th:text="${user.getAge()}"></td>
+                        <td th:text="${user.getEmail()}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

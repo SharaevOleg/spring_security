@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Update</title>
+    <style>
+        button, form, a, h2 {
+            padding-left: 25px;
+            color: #53b1af;
+        }
+    </style>
+</head>
+<body>
+
+        <a th:href="@{/logout}">Logout</a>
+
+    <h2> Add User</h2>
+    <div>
+        <form th:action="@{/createUser}" th:object="${user}" method="post">
+            <label>Name *****<input type="text" th:field="*{firstName}"></label>
+            <br>
+            <label>Surname ***<input type="text" th:field="*{lastName}"></label>
+            <br>
+            <label>Age ******<input type="number" th:field="*{age}"></label>
+            <br>
+            <label>E-mail ****<input type="text" th:field="*{email}"></label>
+            <br>
+            <label>Password **<input type="password" th:field="*{password}"></label>
+            <br>
+            <label>Permission
+                <select multiple size="2" th:field="${user.roles}">
+                    <option value="ROLE_ADMIN">Admin</option>
+                    <option value="ROLE_USER">User</option>
+                </select>
+            </label>
+            <br><br>
+            <input type="submit" value="Send">
+            <input type="hidden" th:field="*{id}">
+        </form>
+    </div>
+</body>
+
+</html>

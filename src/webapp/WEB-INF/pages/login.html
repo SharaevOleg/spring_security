@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Login</title>
+    <style>
+        button, form {
+            padding-left: 25px;
+            color: #53b1af;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container-fluid">
+    <div class="mx-auto">
+        <br>
+        <form th:action="@{/login}" method="POST">
+            <h2 style="color: #53b1af">Login</h2>
+
+            <div th:if="${param.error}">
+                <div class="alert alert-danger">Invalid email or password!</div>
+            </div>
+            <div th:if="${param.logout}">
+                <div class="alert alert-info">You have successfully logged out of your account</div>
+            </div>
+            <div class="form-group">
+                <label><input class="form-control" type="text" name="email" placeholder="E-mail"/></label>
+                </br></br>
+                <label><input class="form-control" type="password" name="password" placeholder="Password"/></label>
+            </div>
+            </br></br>
+            <div class="form-group">
+                <input type="submit" class="form-control btn btn-danger" value="ENTER"/>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

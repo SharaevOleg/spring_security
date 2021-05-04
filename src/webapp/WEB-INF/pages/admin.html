@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Admin</title>
+    <style>
+        h2, a {
+            padding-left: 25px;
+            color: #53b1af;
+        }
+
+        table {
+            width: 50%; /* Ширина таблицы */
+            background: white; /* Цвет фона таблицы */
+            color: white; /* Цвет текста */
+            padding-left: 20px;
+            border-spacing: 5px; /* Расстояние между ячейками */
+            text-align: center;
+        }
+
+        td, th {
+            background: #53b1af; /* Цвет фона ячеек */
+            padding: 5px; /* Поля вокруг текста */
+        }
+        button{
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+
+    <a th:href="@{/logout}">Logout</a>
+
+<h2>Admin</h2>
+
+<div th:switch="${allUsers}">
+    <h2 th:case="null">No users found</h2>
+    <div th:case="*">
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Age</th>
+                <th>E-mail</th>
+                <th>Permission</th>
+                <th>Password</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${allUsers}">
+                <td th:text="${user.firstName}"></td>
+                <td th:text="${user.lastName}"></td>
+                <td th:text="${user.age}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.roles}"></td>
+                <td th:text="${user.password}"></td>
+                <td>
+                    <form th:action="@{admin/edit/{id}(id=${user.id})}">
+                        <button type="submit">Edit</button>
+                    </form>
+                    <form th:action="@{admin/delete/{id}(id=${user.id})}">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <form style="padding-left: 25px" th:action="@{admin/edit}">
+            <button type="submit">Add user</button>
+        </form>
+
+    </div>
+</div>
+</body>
+</html>
